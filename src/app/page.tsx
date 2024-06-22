@@ -1,5 +1,6 @@
 "use client"
 
+import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { useState } from "react";
 
@@ -13,6 +14,10 @@ export default function Home() {
   return (
     <main className="flex min-h-screen">
       <Sidebar open={sidebarOpened} onClose={toggleSidebar} />
+
+      <section className="flex flex-col w-full">
+        <Header onMenuClick={openSidebar} />
+      </section>
     </main>
   );
 }
