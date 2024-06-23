@@ -1,7 +1,9 @@
 "use client"
 
+import { useEffect, useRef } from 'react'
 import { useGPT } from '@/hooks/useGPT';
-import React, { useEffect, useRef } from 'react'
+import ChatMessageLoader from './ChatMessageLoader';
+import ChatPlaceholder from './ChatPlaceholder';
 
 const ChatArea = () => {
   const scrollArea = useRef<HTMLDivElement>(null);
@@ -15,7 +17,14 @@ const ChatArea = () => {
   }, [aiLoading, chatActive?.messages?.length]);
   
   return (
-    <div>ChatArea</div>
+    <section ref={scrollArea} className="h-0 flex-auto overflow-y-scroll">
+      {!chatActive && <ChatPlaceholder />}
+      {/* {chatActive &&
+        chatActive.messages.map((item) => (
+          <ChatMessageItem key={item.id} item={item} />
+        ))} */}
+      {aiLoading && <ChatMessageLoader />}
+    </section>
   )
 }
 

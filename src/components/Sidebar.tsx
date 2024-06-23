@@ -16,7 +16,7 @@ type Props = {
 const Sidebar = ({ open, onClose }: Props) => {
   return (
     <section
-      className={`fixed left-0 top-0 bottom-0 ${
+      className={`fixed z-50 left-0 top-0 bottom-0 ${
         open ? "w-screen bg-gemini-grey-700/60" : "w-0"
       } md:min-w-16 md:max-w-48 md:static`}
     >
