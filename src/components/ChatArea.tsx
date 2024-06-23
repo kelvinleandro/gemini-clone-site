@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { useGPT } from '@/hooks/useGPT';
 import ChatMessageLoader from './ChatMessageLoader';
 import ChatPlaceholder from './ChatPlaceholder';
+import ChatMessageItem from './ChatMessageItem';
 
 const ChatArea = () => {
   const scrollArea = useRef<HTMLDivElement>(null);
@@ -19,10 +20,10 @@ const ChatArea = () => {
   return (
     <section ref={scrollArea} className="h-0 flex-auto overflow-y-scroll">
       {!chatActive && <ChatPlaceholder />}
-      {/* {chatActive &&
+      {chatActive &&
         chatActive.messages.map((item) => (
           <ChatMessageItem key={item.id} item={item} />
-        ))} */}
+        ))}
       {aiLoading && <ChatMessageLoader />}
     </section>
   )
