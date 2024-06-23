@@ -8,7 +8,7 @@ import { Chat } from "@/types/Chat";
 import { ChatMessage } from "@/types/ChatMessage";
 import { v4 as uuid } from "uuid";
 
-type GPTContextType = {
+export type GPTContextType = {
   chatList: Chat[];
   chatActiveId: string;
   chatActive: Chat | undefined;
@@ -25,7 +25,7 @@ type GPTContextType = {
   sendMessage: (message: string) => void;
 };
 
-export const GPTContext = createContext<GPTContextType | null>(null);
+export const GPTContext = createContext<GPTContextType | undefined>(undefined);
 
 export const GPTContextProvider = ({ children }: { children: ReactNode }) => {
   const [chatList, setChatList] = useState<Chat[]>([]);
