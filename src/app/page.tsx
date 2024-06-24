@@ -1,6 +1,7 @@
 "use client"
 
 import ChatArea from "@/components/ChatArea";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { useState } from "react";
@@ -16,10 +17,12 @@ export default function Home() {
     <main className="flex min-h-screen">
       <Sidebar open={sidebarOpened} onClose={toggleSidebar} />
 
-      <section className="flex flex-col w-full">
+      <section className="flex flex-col w-full md:px-28">
         <Header onMenuClick={openSidebar} />
 
         <ChatArea />
+
+        <Footer />
       </section>
     </main>
   );
