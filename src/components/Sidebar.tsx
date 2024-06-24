@@ -43,7 +43,7 @@ const Sidebar = ({ open, onClose }: Props) => {
             </div>
 
             {open && (
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 animate-fadeIn">
                 <p className="my-4">Recent</p>
                 {chatList.map((item) => (
                   <SidebarChatButton

@@ -17,7 +17,7 @@ export default function Home() {
     <main className="flex min-h-screen">
       <Sidebar open={sidebarOpened} onClose={toggleSidebar} />
 
-      <section className="flex flex-col w-full md:px-28">
+      <section className="flex flex-col w-full md:px-28 animate-fadeIn">
         <Header onMenuClick={openSidebar} />
 
         <ChatArea />
