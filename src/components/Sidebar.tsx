@@ -1,3 +1,4 @@
+import { useGPT } from "@/hooks/useGPT";
 import React from "react";
 
 import {
@@ -7,6 +8,7 @@ import {
   AiOutlinePlus,
 } from "react-icons/ai";
 import { MdHistory } from "react-icons/md";
+import SidebarChatButton from "./SidebarChatButton";
 
 type Props = {
   open: boolean;
@@ -14,6 +16,8 @@ type Props = {
 };
 
 const Sidebar = ({ open, onClose }: Props) => {
+  const { chatList, chatActiveId, deleteChat, editChat, selectChat, createNewChat } = useGPT();
+
   return (
     <section
       className={`fixed z-50 left-0 top-0 bottom-0 ${
@@ -33,23 +37,39 @@ const Sidebar = ({ open, onClose }: Props) => {
               className="cursor-pointer ml-2 block w-[32px] h-[32px] md:w-[20px] md:h-[20px]"
             />
 
-            <div className="flex items-center gap-2 py-2 px-4 mt-12 text-gray-500 bg-gemini-white-200 rounded-[50px] cursor-pointer">
+            <div onClick={createNewChat} className="flex items-center gap-2 py-2 px-4 mt-12 text-gray-500 bg-gemini-white-200 rounded-[50px] cursor-pointer">
               <AiOutlinePlus className="w-[32px] h-[32px] md:w-[20px] md:h-[20px]" />
               {open && <p>New Chat</p>}
             </div>
+
+            {open && (
+              <div className="flex flex-col gap-1">
+                <p className="my-4">Recent</p>
+                {chatList.map((item) => (
+                  <SidebarChatButton
+                    key={item.id}
+                    chatItem={item}
+                    active={item.id === chatActiveId}
+                    onClick={selectChat}
+                    onDelete={deleteChat}
+                    onEdit={editChat}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* bottom */}
           <div className="flex flex-col">
-            <div className="cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
+            <div className="rounded-full cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
               <AiOutlineQuestionCircle className="w-[32px] h-[32px] md:w-[20px] md:h-[20px]" />
               {open && <p>Help</p>}
             </div>
-            <div className="cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
+            <div className="rounded-full cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
               <MdHistory className="w-[32px] h-[32px] md:w-[20px] md:h-[20px]" />
               {open && <p>Activity</p>}
             </div>
-            <div className="cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
+            <div className="rounded-full cursor-pointer flex items-start gap-2 p-2 text-gemini-grey-700 hover:bg-gemini-white-300">
               <AiOutlineSetting className="w-[32px] h-[32px] md:w-[20px] md:h-[20px]" />
               {open && <p>Settings</p>}
             </div>
