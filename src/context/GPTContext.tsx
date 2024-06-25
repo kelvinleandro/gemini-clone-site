@@ -3,7 +3,7 @@
 
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import { openai } from "@/utils/openai";
+import { openai } from "@/api/openai";
 import { Chat } from "@/types/Chat";
 import { ChatMessage } from "@/types/ChatMessage";
 import { v4 as uuid } from "uuid";
